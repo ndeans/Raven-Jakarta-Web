@@ -39,6 +39,7 @@
     </dependencies>
 
     <build>
+        <finalName>Raven-Jakarta-Web</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

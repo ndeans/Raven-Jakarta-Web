@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Author: ndeans
+  Date: 10/5/24
+  Time: 4:07 PM
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://java.sun.com/jsf/core ">
+
+<f:view>
+    <h:head>
+        <title>Start Raven</title>
+    </h:head>
+
+    <h:body>
+        <h1>Raven Console:</h1>
+        <h:form>
+            <h:inputText value="#{consoleBean.username}"/>
+            <h:commandButton value="submit" action="#{consoleBean.submit()}"/>
+        </h:form>
+        <h:outputText value="Hello, #{consoleBean.username}" rendered="#{consoleBean.submitted}"/>
+    </h:body>
+</f:view>
+
+</html>
