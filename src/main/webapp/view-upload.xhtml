@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title>Raven: Posts</title>
+        <h:outputStylesheet name="css/style1.css"/>
+    </h:head>
+
+    <f:view>
+        <f:metadata>
+            <f:viewParam name="jid" value="#{uploadBean.upload_id}"/>
+            <f:viewAction action="#{uploadBean.loadPosts}"/>
+        </f:metadata>
+        <h1>Raven Console (Jakarta/JSF4) : UploadBean contains list of posts</h1>
+        <h2>Upload: #{uploadBean.upload_id}</h2>
+        <h:form>
+            <h:dataTable
+                    value="#{uploadBean.postList}"
+                    var="post"
+                    columnClasses="">
+                <h:column>
+                    <f:facet name="header"/>
+                    <h:selectBooleanCheckbox value="#{post.selected}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">topic_id</f:facet>
+                    #{post.topic_id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">upload_id </f:facet>
+                    #{post.upload_id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">author</f:facet>
+                    #{post.author}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">text</f:facet>
+                    #{post.text}
+                </h:column>
+            </h:dataTable>
+        </h:form>
+    </f:view>
+
+</html>

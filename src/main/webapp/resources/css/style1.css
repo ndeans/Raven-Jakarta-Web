@@ -1,0 +1,46 @@
+h1 {
+    font-family: Noto Sans;
+    font-size: 16px;
+}
+td {
+    font-family: Noto Sans;
+    font-size: 16px;
+    padding-left: 5px;
+    padding-right:5px;
+    background-color: lightgrey
+}
+th {
+    font-family: Noto Sans;
+    font-size: 16px;
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: lightblue;
+}
+
+.index_column {
+    width: 100px;
+    text-align: left;
+}
+.number_column {
+    width: 100px;
+    text-align: right;
+}
+
+.name_column {
+    width: 200px;
+    text-align: left;
+}
+
+.text_column {
+    width: 1000px;
+    text-align: left;
+}
+
+#header {
+    text-align: left;
+}
+
+outputLabel {
+    font-family: Noto Sans;
+    font-size: 16px;
+}
