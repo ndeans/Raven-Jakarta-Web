@@ -1,4 +1,4 @@
-package us.deans.us.ravenjakartaweb;
+package us.deans.raven;
 
 import java.io.*;
 

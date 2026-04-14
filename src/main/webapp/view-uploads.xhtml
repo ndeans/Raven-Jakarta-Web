@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <title>Raven: Uploads</title>
+    <h:outputStylesheet name="css/style1.css"/>
+</h:head>
+<h:body>
+    <h1>Raven Console (Jakarta/JSF4) : ConsoleBean contains list of uploads</h1>
+    <h:form>
+        <h:dataTable value="#{consoleBean.uploads}"
+                     var="upload"
+                     columnClasses="index_columnm, index_column, name_column, index_column, text_column, number_column">
+            <h:column>
+                <f:facet name="header"/>
+                <h:selectBooleanCheckbox value="#{upload.selected}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header" style="align:left;">upload_id</f:facet>
+                <h:link outcome="view-upload.xhtml" value="#{upload.job_id}">
+                    <f:param name="jid" value="#{upload.job_id}"/>
+                </h:link>
+            </h:column>
+            <h:column>
+                <f:facet name="header">upload_time</f:facet>
+                #{upload.created_at}
+            </h:column>
+            <h:column>
+                <f:facet name="header">topic_id</f:facet>
+                #{upload.topic_id}
+            </h:column>
+            <h:column width="900">
+                <f:facet name="header" style="align:left;">topic_title</f:facet>
+                #{upload.title}
+            </h:column>
+            <h:column>
+                <f:facet name="header">post_count</f:facet>
+                #{upload.post_count}
+            </h:column>
+        </h:dataTable>
+    </h:form>
+</h:body>
+
+</html>
