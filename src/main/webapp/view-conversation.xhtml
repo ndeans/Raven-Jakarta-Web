@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:head>
+    <title>Raven: Conversation Detail</title>
+    <h:outputStylesheet name="css/style1.css"/>
+</h:head>
+
+<h:body>
+    <f:view>
+        <f:metadata>
+            <f:viewParam name="jid" value="#{conversationBean.upload_id}"/>
+            <f:viewParam name="c" value="#{conversationBean.selectedIndex}"/>
+            <f:viewParam name="title" value="#{conversationBean.topicTitle}"/>
+            <f:viewAction action="#{conversationBean.loadConversations}"/>
+        </f:metadata>
+
+        <h1>#{conversationBean.topicTitle}</h1>
+        <h2>Upload: #{conversationBean.upload_id}
+            &#x2014; Conversation #{conversationBean.selectedIndex + 1}
+            (#{conversationBean.selectedConversation.posts.size()} posts)</h2>
+
+        <h:link value="Back to conversation list" outcome="view-conversations.xhtml">
+            <f:param name="jid" value="#{conversationBean.upload_id}"/>
+            <f:param name="title" value="#{conversationBean.topicTitle}"/>
+        </h:link>
+
+        <h:panelGroup layout="block" styleClass="conversation-panel">
+
+            <h:panelGroup layout="block" styleClass="post-card-context"
+                          rendered="#{conversationBean.contextPost ne null}">
+                <h:panelGroup layout="block" styleClass="post-header">
+                    <h:outputText value="#{conversationBean.contextPost.author}" styleClass="post-author"/>
+                    <h:outputText value=" [#{conversationBean.contextPost.postId}]" styleClass="post-id"/>
+                    <h:outputLink value="#{conversationBean.contextPost.link}" target="_blank" styleClass="post-link">OPP</h:outputLink>
+                </h:panelGroup>
+                <h:panelGroup layout="block" styleClass="post-content">
+                    <h:outputText value="#{conversationBean.contextPost.html}" escape="false"/>
+                </h:panelGroup>
+            </h:panelGroup>
+
+            <ui:repeat value="#{conversationBean.selectedConversation.posts}" var="post" varStatus="status">
+                <h:panelGroup layout="block"
+                              styleClass="#{status.index == 0 and conversationBean.contextPost eq null ? 'post-card-context' : 'post-card'}">
+
+                    <h:panelGroup layout="block" styleClass="post-header">
+                        <h:outputText value="#{post.author}" styleClass="post-author"/>
+                        <h:outputText value=" [#{post.postId}]" styleClass="post-id"/>
+                        <h:outputLink value="#{post.link}" target="_blank" styleClass="post-link">OPP</h:outputLink>
+                    </h:panelGroup>
+
+                    <h:panelGroup layout="block" styleClass="post-content">
+                        <h:outputText value="#{post.html}" escape="false"/>
+                    </h:panelGroup>
+
+                </h:panelGroup>
+            </ui:repeat>
+
+        </h:panelGroup>
+
+    </f:view>
+</h:body>
+
+</html>

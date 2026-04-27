@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:head>
+    <title>Raven: Conversations</title>
+    <h:outputStylesheet name="css/style1.css"/>
+</h:head>
+
+<h:body>
+    <f:view>
+        <f:metadata>
+            <f:viewParam name="jid" value="#{conversationBean.upload_id}"/>
+            <f:viewParam name="title" value="#{conversationBean.topicTitle}"/>
+            <f:viewAction action="#{conversationBean.loadConversations}"/>
+        </f:metadata>
+
+        <h1>#{conversationBean.topicTitle}</h1>
+        <h2>Upload: #{conversationBean.upload_id}</h2>
+        <h3>#{conversationBean.conversations.size()} conversations found</h3>
+
+        <table class="conversation-index">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Posts</th>
+                    <th>Root Author</th>
+                    <th>Root Post</th>
+                </tr>
+            </thead>
+            <tbody>
+                <ui:repeat value="#{conversationBean.conversations}" var="conv" varStatus="status">
+                    <tr>
+                        <td>
+                            <h:link value="#{status.index + 1}" outcome="view-conversation.xhtml">
+                                <f:param name="jid" value="#{conversationBean.upload_id}"/>
+                                <f:param name="c" value="#{status.index}"/>
+                                <f:param name="title" value="#{conversationBean.topicTitle}"/>
+                            </h:link>
+                        </td>
+                        <td>#{conv.posts.size()}</td>
+                        <td>#{conv.posts[0].author}</td>
+                        <td>[#{conv.posts[0].postId}] #{conv.posts[0].head}</td>
+                    </tr>
+                </ui:repeat>
+            </tbody>
+        </table>
+
+    </f:view>
+</h:body>
+
+</html>
