@@ -16,26 +16,43 @@ th {
     padding-right: 5px;
     background-color: lightblue;
 }
-
-.index_column {
-    width: 100px;
+.control_column {
+    width: 120px;
     text-align: left;
+    white-space: nowrap;
+}
+.btn-upload {
+    width: 20px;
+    height: 14px;
+    color: #2255bb;
+    background-color: #3366cc;
+    border: 1px solid #2255bb;
+    padding: 0;
+    margin-right: 12px;
+    cursor: pointer;
+}
+.btn-dialogs {
+    width: 20px;
+    height: 14px;
+    color: #33aa44;
+    background-color: #33aa44;
+    border: 1px solid #229933;
+    padding: 0;
+    cursor: pointer;
 }
 .number_column {
-    width: 100px;
+    width: 60px;
     text-align: right;
+    white-space: nowrap;
 }
-
-.name_column {
-    width: 200px;
+.time_column {
+    width: 160px;
+    text-align: left;
+    white-space: nowrap;
+}
+.title_column {
     text-align: left;
 }
-
-.text_column {
-    width: 1000px;
-    text-align: left;
-}
-
 #header {
     text-align: left;
 }
@@ -43,4 +60,77 @@ th {
 outputLabel {
     font-family: Noto Sans;
     font-size: 16px;
+}
+
+/* Conversation index table */
+.conversation-index {
+    width: 100%;
+}
+
+/* Conversation detail view */
+.conversation-panel {
+    max-height: 600px;
+    overflow-y: auto;
+    border: 1px solid #aaa;
+    padding: 1em;
+    margin-top: 1em;
+    background-color: #f5f5f5;
+}
+
+.post-card-context {
+    border: 1px solid #ccc;
+    margin-bottom: 1em;
+    padding: 0.75em;
+    background-color: #f0f0ff;
+}
+.post-card {
+    border: 1px solid #ccc;
+    margin-bottom: 1em;
+    padding: 0.75em;
+    background-color: #ffffff;
+}
+
+.post-header {
+    font-family: "Noto Sans", sans-serif;
+    font-size: 14px;
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 0.5em;
+}
+
+.post-author {
+    font-weight: bold;
+    color: #333;
+}
+
+.post-id {
+    color: #888;
+    margin-left: 0.5em;
+}
+
+.post-link {
+    float: right;
+    color: #3366aa;
+    text-decoration: none;
+}
+
+.post-content {
+    font-family: "Noto Sans", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Style OPP's existing quote-reply markup */
+.post-content div.smalltext {
+    color: #666;
+    font-size: 13px;
+    margin-bottom: 4px;
+}
+
+.post-content div.quote_colors {
+    border-left: 3px solid #aaa;
+    padding-left: 0.75em;
+    margin-bottom: 0.5em;
+    color: #555;
+    font-style: italic;
 }

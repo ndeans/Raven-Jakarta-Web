@@ -17,16 +17,21 @@
     <h:form>
         <h:dataTable value="#{consoleBean.uploads}"
                      var="upload"
-                     columnClasses="index_columnm, index_column, name_column, index_column, text_column, number_column">
+                     style="width:100%;"
+                     columnClasses="control_column, number_column, time_column, number_column, title_column, number_column">
             <h:column>
                 <f:facet name="header"/>
-                <h:selectBooleanCheckbox value="#{upload.selected}"/>
+                <h:button outcome="view-upload.xhtml" value="" styleClass="btn-upload">
+                    <f:param name="jid" value="#{upload.job_id}"/>
+                </h:button>
+                <h:button outcome="view-conversations.xhtml" value="" styleClass="btn-dialogs">
+                    <f:param name="jid" value="#{upload.job_id}"/>
+                    <f:param name="title" value="#{upload.title}"/>
+                </h:button>
             </h:column>
             <h:column>
-                <f:facet name="header" style="align:left;">upload_id</f:facet>
-                <h:link outcome="view-upload.xhtml" value="#{upload.job_id}">
-                    <f:param name="jid" value="#{upload.job_id}"/>
-                </h:link>
+                <f:facet name="header">upload_id</f:facet>
+                #{upload.job_id}
             </h:column>
             <h:column>
                 <f:facet name="header">upload_time</f:facet>
@@ -36,7 +41,7 @@
                 <f:facet name="header">topic_id</f:facet>
                 #{upload.topic_id}
             </h:column>
-            <h:column width="900">
+            <h:column>
                 <f:facet name="header" style="align:left;">topic_title</f:facet>
                 #{upload.title}
             </h:column>
