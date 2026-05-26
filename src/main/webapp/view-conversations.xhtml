@@ -14,6 +14,16 @@
 </h:head>
 
 <h:body>
+    <script type="text/javascript">
+    //<![CDATA[
+    (function() {
+        if (localStorage.getItem('ravenColorMode') === 'dark') {
+            document.body.classList.add('dark');
+        }
+    })();
+    //]]>
+    </script>
+
     <f:view>
         <f:metadata>
             <f:viewParam name="jid" value="#{conversationBean.upload_id}"/>
@@ -25,32 +35,34 @@
         <h2>Upload: #{conversationBean.upload_id}</h2>
         <h3>#{conversationBean.conversations.size()} conversations found</h3>
 
-        <table class="conversation-index">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Posts</th>
-                    <th>Root Author</th>
-                    <th>Root Post</th>
-                </tr>
-            </thead>
-            <tbody>
-                <ui:repeat value="#{conversationBean.conversations}" var="conv" varStatus="status">
+        <div class="table-scroll">
+            <table class="conversation-index">
+                <thead>
                     <tr>
-                        <td>
-                            <h:link value="#{status.index + 1}" outcome="view-conversation.xhtml">
-                                <f:param name="jid" value="#{conversationBean.upload_id}"/>
-                                <f:param name="c" value="#{status.index}"/>
-                                <f:param name="title" value="#{conversationBean.topicTitle}"/>
-                            </h:link>
-                        </td>
-                        <td>#{conv.posts.size()}</td>
-                        <td>#{conv.posts[0].author}</td>
-                        <td>[#{conv.posts[0].postId}] #{conv.posts[0].head}</td>
+                        <th>#</th>
+                        <th>Posts</th>
+                        <th>Root Author</th>
+                        <th>Root Post</th>
                     </tr>
-                </ui:repeat>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <ui:repeat value="#{conversationBean.conversations}" var="conv" varStatus="status">
+                        <tr>
+                            <td>
+                                <h:link value="#{status.index + 1}" outcome="view-conversation.xhtml">
+                                    <f:param name="jid" value="#{conversationBean.upload_id}"/>
+                                    <f:param name="c" value="#{status.index}"/>
+                                    <f:param name="title" value="#{conversationBean.topicTitle}"/>
+                                </h:link>
+                            </td>
+                            <td>#{conv.posts.size()}</td>
+                            <td>#{conv.posts[0].author}</td>
+                            <td>[#{conv.posts[0].postId}] #{conv.posts[0].head}</td>
+                        </tr>
+                    </ui:repeat>
+                </tbody>
+            </table>
+        </div>
 
     </f:view>
 </h:body>

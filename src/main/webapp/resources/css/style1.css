@@ -69,7 +69,7 @@ outputLabel {
 
 /* Conversation detail view */
 .conversation-panel {
-    max-height: 600px;
+    max-height: 80vh;
     overflow-y: auto;
     border: 1px solid #aaa;
     padding: 1em;
@@ -133,4 +133,129 @@ outputLabel {
     margin-bottom: 0.5em;
     color: #555;
     font-style: italic;
+}
+
+/* ==================== Color Mode ==================== */
+
+/* Mode-independent */
+table {
+    border-spacing: 1px;
+    background-color: #454130;
+}
+th {
+    font-family: sans-serif;
+    font-size: 10pt;
+    background-color: #ebebe3;
+    text-align: left;
+    font-weight: 600;
+}
+td {
+    font-family: sans-serif;
+    font-size: 10pt;
+}
+.btn-upload {
+    background-color: goldenrod;
+    border: 1px solid darkgrey;
+}
+.btn-dialogs {
+    background-color: #16d96d;
+    border: 1px solid darkgrey;
+}
+
+/* Light mode (default) */
+body {
+    background-color: floralwhite;
+}
+th {
+    color: #ffdf5d;
+    background-color: grey;
+}
+td {
+    color: black;
+    background-color: floralwhite;
+}
+h1 {
+    color: black;
+}
+
+/* Dark mode */
+body.dark {
+    background-color: #2f3533;
+}
+body.dark th {
+    color: #ffdf5d;
+    background-color: grey;
+}
+body.dark td {
+    color: #ffdf5d;
+    background-color: #2f3533;
+}
+body.dark h1 {
+    color: cornsilk;
+}
+
+body.dark td.logo{
+    color: cornsilk;
+}
+
+body.dark .hamburger {
+    color: cornsilk;
+}
+
+/* ==================== Scrollable Tables ==================== */
+
+.table-scroll {
+    overflow-y: auto;
+    max-height: 80vh;
+}
+.table-scroll th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+/* ==================== Hamburger Menu ==================== */
+
+.keystone {
+    background-color: #00000000;
+}
+
+.menu-container {
+    position: fixed;
+    top: 0.4em;
+    right: 1em;
+    z-index: 100;
+    background-color: #00000000;
+}
+
+td.logo {
+    font-family: "Noto Sans", sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.hamburger {
+    font-size: 1.5em;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.dropdown {
+    position: absolute;
+    right: 0;
+    background-color: #ebebe3;
+    border: 1px solid darkgrey;
+    padding: 0.5em 1em;
+    min-width: 160px;
+    z-index: 10;
+}
+.dropdown a, .toggle-label {
+    display: block;
+    padding: 0.4em 0;
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+.hidden {
+    display: none;
 }

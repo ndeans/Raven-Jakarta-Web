@@ -14,6 +14,16 @@
 </h:head>
 
 <h:body>
+    <script type="text/javascript">
+    //<![CDATA[
+    (function() {
+        if (localStorage.getItem('ravenColorMode') === 'dark') {
+            document.body.classList.add('dark');
+        }
+    })();
+    //]]>
+    </script>
+
     <f:view>
         <f:metadata>
             <f:viewParam name="jid" value="#{conversationBean.upload_id}"/>
