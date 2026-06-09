@@ -39,8 +39,8 @@ public class UploadBean implements Serializable {
         try {
             postList = curator.getPostList(upload_id);
             topic_id = "";
-            topic_title = "";
-            logger.info("Loaded {} posts for for upload: {} ", postList.size(), upload_id );
+            topic_title = curator.getTopicTitle(upload_id);
+            logger.info("Loaded {} posts for upload: {}, topic: {}", postList.size(), upload_id, topic_title);
         } catch (Exception ex) {
             logger.error(ex.getMessage());
         }
@@ -60,6 +60,10 @@ public class UploadBean implements Serializable {
     }
     public List<RvnPost> getPostList() {
         return postList;
+    }
+
+    public String getTopic_title() {
+        return topic_title;
     }
 
     public boolean isUploadIdSet() {

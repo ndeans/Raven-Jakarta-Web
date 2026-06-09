@@ -1,75 +1,113 @@
-h1 {
-    font-family: Noto Sans;
+/* ==================== Base / Typography ==================== */
+
+h1, h2, h3 {
+    font-family: "Noto Sans", sans-serif;
     font-size: 16px;
+    color: black;
 }
+
 td {
-    font-family: Noto Sans;
-    font-size: 16px;
-    padding-left: 5px;
-    padding-right:5px;
-    background-color: lightgrey
-}
-th {
-    font-family: Noto Sans;
-    font-size: 16px;
+    font-family: sans-serif;
+    font-size: 10pt;
     padding-left: 5px;
     padding-right: 5px;
-    background-color: lightblue;
+    color: black;
+    background-color: floralwhite;
 }
+
+th {
+    font-family: sans-serif;
+    font-size: 10pt;
+    padding-left: 5px;
+    padding-right: 5px;
+    text-align: left;
+    font-weight: 600;
+    color: #ffdf5d;
+    background-color: grey;
+}
+
+outputLabel {
+    font-family: "Noto Sans", sans-serif;
+    font-size: 16px;
+}
+
+/* ==================== Table Layout ==================== */
+
+table {
+    border-spacing: 1px;
+    background-color: #454130;
+}
+
 .control_column {
     width: 120px;
     text-align: left;
     white-space: nowrap;
 }
-.btn-upload {
-    width: 20px;
-    height: 14px;
-    color: #2255bb;
-    background-color: #3366cc;
-    border: 1px solid #2255bb;
-    padding: 0;
-    margin-right: 12px;
-    cursor: pointer;
-}
-.btn-dialogs {
-    width: 20px;
-    height: 14px;
-    color: #33aa44;
-    background-color: #33aa44;
-    border: 1px solid #229933;
-    padding: 0;
-    cursor: pointer;
-}
+
 .number_column {
     width: 60px;
     text-align: right;
     white-space: nowrap;
 }
+
 .time_column {
     width: 160px;
     text-align: left;
     white-space: nowrap;
 }
+
 .title_column {
     text-align: left;
 }
+
 #header {
     text-align: left;
 }
 
-outputLabel {
-    font-family: Noto Sans;
-    font-size: 16px;
+/* ==================== Buttons ==================== */
+
+.btn-upload {
+    width: 20px;
+    height: 14px;
+    color: #2255bb;
+    background-color: goldenrod;
+    border: 1px solid darkgrey;
+    padding: 0;
+    margin-right: 12px;
+    cursor: pointer;
 }
 
-/* Conversation index table */
+.btn-dialogs {
+    width: 20px;
+    height: 14px;
+    color: #33aa44;
+    background-color: #16d96d;
+    border: 1px solid darkgrey;
+    padding: 0;
+    cursor: pointer;
+}
+
+/* ==================== Scrollable Tables ==================== */
+
+.table-scroll {
+    overflow-y: auto;
+    max-height: 80vh;
+}
+
+.table-scroll th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+/* ==================== Conversation Views ==================== */
+
 .conversation-index {
     width: 100%;
 }
 
-/* Conversation detail view */
 .conversation-panel {
-    max-height: 600px;
+    max-height: 80vh;
     overflow-y: auto;
     border: 1px solid #aaa;
     padding: 1em;
@@ -83,6 +121,7 @@ outputLabel {
     padding: 0.75em;
     background-color: #f0f0ff;
 }
+
 .post-card {
     border: 1px solid #ccc;
     margin-bottom: 1em;
@@ -120,7 +159,6 @@ outputLabel {
     line-height: 1.5;
 }
 
-/* Style OPP's existing quote-reply markup */
 .post-content div.smalltext {
     color: #666;
     font-size: 13px;
@@ -133,4 +171,100 @@ outputLabel {
     margin-bottom: 0.5em;
     color: #555;
     font-style: italic;
+}
+
+/* ==================== Color Mode ==================== */
+
+/* Light mode (default) — base rules above cover light mode */
+
+body {
+    background-color: floralwhite;
+}
+
+/* Dark mode */
+
+body.dark {
+    background-color: #2f3533;
+}
+
+body.dark h1, body.dark h2, body.dark h3 {
+    color: cornsilk;
+}
+
+body.dark a {
+    color: #99ccff;
+}
+
+body.dark td {
+    color: #ffdf5d;
+    background-color: #2f3533;
+}
+
+body.dark td.logo {
+    color: cornsilk;
+}
+
+body.dark .hamburger {
+    color: cornsilk;
+}
+
+/* ==================== Hamburger Menu ==================== */
+
+.keystone {
+    background-color: #00000000;
+}
+
+.menu-container {
+    position: fixed;
+    top: 0.1em;
+    right: 1em;
+    z-index: 100;
+    background-color: #00000000;
+}
+
+td.logo {
+    font-family: "Noto Sans", sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.hamburger {
+    font-size: 1.5em;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: absolute;
+    right: 0;
+    background-color: #ebebe3;
+    border: 1px solid darkgrey;
+    padding: 0.5em 1em;
+    min-width: 160px;
+    z-index: 10;
+}
+
+.dropdown a, .toggle-label {
+    display: block;
+    padding: 0.4em 0;
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+/* ==================== Filter Bar ==================== */
+
+.filter-bar {
+    padding: 0.5em 0 0.75em 0;
+}
+
+.filter-bar span {
+    font-family: "Noto Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
 }

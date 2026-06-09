@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<h:head>
+    <title>Raven: About</title>
+    <h:outputStylesheet name="css/style1.css"/>
+</h:head>
+
+<h:body>
+    <script type="text/javascript">
+    //<![CDATA[
+    (function() {
+        if (localStorage.getItem('ravenColorMode') === 'dark') {
+            document.body.classList.add('dark');
+        }
+    })();
+    //]]>
+    </script>
+
+    <h1>About Raven</h1>
+    <p>Raven is a conversation analysis system for extracting and querying discussion data.</p>
+    <p><h:link value="Back" outcome="view-uploads.xhtml"/></p>
+</h:body>
+
+</html>
