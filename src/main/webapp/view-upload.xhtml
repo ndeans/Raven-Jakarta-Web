@@ -45,6 +45,17 @@
 
             <h1>Upload: #{uploadBean.upload_id}</h1>
             <h2>"#{uploadBean.topic_title}"</h2>
+            <h:form id="filterForm">
+                <div class="filter-bar">
+                    <span>Author: </span>
+                    <h:inputText value="#{uploadBean.postAuthorFilter}" size="20"/>
+                    <span>  Text: </span>
+                    <h:inputText value="#{uploadBean.postTextFilter}" size="30"/>
+                    <h:commandButton value="Filter" action="#{uploadBean.applyPostFilter}"/>
+                    <h:commandButton value="Clear"  action="#{uploadBean.clearPostFilter}"/>
+                </div>
+            </h:form>
+
             <div class="table-scroll">
                 <h:form>
                     <h:dataTable

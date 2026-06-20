@@ -23,6 +23,8 @@ public class UploadBean implements Serializable {
     private String topic_title;
     private List<RvnPost> postList;
     private boolean isUploadIdSet = false;
+    private String postAuthorFilter = "";
+    private String postTextFilter = "";
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @PostConstruct
@@ -71,6 +73,28 @@ public class UploadBean implements Serializable {
     }
     public void setUploadIdSet(boolean uploadIdSet) {
         isUploadIdSet = uploadIdSet;
+    }
+
+    public String getPostAuthorFilter() { return postAuthorFilter; }
+    public void setPostAuthorFilter(String postAuthorFilter) { this.postAuthorFilter = postAuthorFilter; }
+
+    public String getPostTextFilter() { return postTextFilter; }
+    public void setPostTextFilter(String postTextFilter) { this.postTextFilter = postTextFilter; }
+
+    public void applyPostFilter() {
+        Curator curator = new OppCurator();
+        try {
+            postList = curator.getFilteredPosts(upload_id, postAuthorFilter, postTextFilter);
+            logger.info("Filter applied — {} posts returned for upload_id={}", postList.size(), upload_id);
+        } catch (Exception ex) {
+            logger.error("Error applying post filter: {}", ex.getMessage());
+        }
+    }
+
+    public void clearPostFilter() {
+        postAuthorFilter = "";
+        postTextFilter = "";
+        loadPosts();
     }
 
 }
