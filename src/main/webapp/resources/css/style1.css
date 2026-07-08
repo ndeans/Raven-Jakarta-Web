@@ -129,6 +129,14 @@ table {
     background-color: #ffffff;
 }
 
+.post-card, .post-card-context {
+    cursor: pointer;
+}
+
+.post-card:hover, .post-card-context:hover {
+    box-shadow: 0 0 0 2px rgba(51, 102, 170, 0.4);
+}
+
 .post-header {
     font-family: "Noto Sans", sans-serif;
     font-size: 14px;

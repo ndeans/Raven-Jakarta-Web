@@ -8,11 +8,12 @@
     <h:panelGroup layout="block" styleClass="conversation-panel">
 
         <h:panelGroup layout="block" styleClass="post-card-context"
-                      rendered="#{conversation.contextPost ne null}">
+                      rendered="#{conversation.contextPost ne null}"
+                      onclick="window.location.href='view-analyzer.xhtml?post_id=#{conversation.contextPost.postId}'">
             <h:panelGroup layout="block" styleClass="post-header">
                 <h:outputText value="#{conversation.contextPost.author}" styleClass="post-author"/>
                 <h:outputText value=" [#{conversation.contextPost.postId}]" styleClass="post-id"/>
-                <h:outputLink value="#{conversation.contextPost.link}" target="_blank" styleClass="post-link">OPP</h:outputLink>
+                <h:outputLink value="#{conversation.contextPost.link}" target="_blank" styleClass="post-link" onclick="event.stopPropagation();">OPP</h:outputLink>
             </h:panelGroup>
             <h:panelGroup layout="block" styleClass="post-content">
                 <h:outputText value="#{conversation.contextPost.html}" escape="false"/>
@@ -21,15 +22,13 @@
 
         <ui:repeat value="#{conversation.posts}" var="post" varStatus="status">
             <h:panelGroup layout="block"
-                          styleClass="#{status.index == 0 and conversation.contextPost eq null ? 'post-card-context' : 'post-card'}#{post.postId eq highlightPostId ? ' post-highlighted' : ''}">
+                          styleClass="#{status.index == 0 and conversation.contextPost eq null ? 'post-card-context' : 'post-card'}#{post.postId eq highlightPostId ? ' post-highlighted' : ''}"
+                          onclick="window.location.href='view-analyzer.xhtml?post_id=#{post.postId}'">
 
                 <h:panelGroup layout="block" styleClass="post-header">
                     <h:outputText value="#{post.author}" styleClass="post-author"/>
                     <h:outputText value=" [#{post.postId}]" styleClass="post-id"/>
-                    <h:outputLink value="#{post.link}" target="_blank" styleClass="post-link">OPP</h:outputLink>
-                    <h:link value="Analyze" outcome="view-analyzer.xhtml" styleClass="post-link">
-                        <f:param name="post_id" value="#{post.postId}"/>
-                    </h:link>
+                    <h:outputLink value="#{post.link}" target="_blank" styleClass="post-link" onclick="event.stopPropagation();">OPP</h:outputLink>
                 </h:panelGroup>
 
                 <h:panelGroup layout="block" styleClass="post-content">
