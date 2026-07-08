@@ -268,3 +268,28 @@ td.logo {
     font-size: 14px;
     font-weight: 600;
 }
+
+/* ==================== Post Analyzer ==================== */
+
+.analyzer-container {
+    display: flex;
+    gap: 1em;
+}
+.analyzer-left {
+    flex: 1 1 50%;
+    max-width: 50%;
+}
+.analyzer-right {
+    flex: 1 1 50%;
+    max-width: 50%;
+    border-left: 1px solid darkgrey;
+    padding-left: 1em;
+}
+.post-highlighted {
+    outline: 2px solid goldenrod;
+    background-color: rgba(230, 190, 60, 0.15);
+}
+.analyzer-message {
+    font-style: italic;
+    padding: 1em 0;
+}

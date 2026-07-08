@@ -9,7 +9,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
 <h:head>
-    <title>Raven: Conversation Detail</title>
+    <title>Raven: Post Analyzer</title>
     <h:outputStylesheet name="css/style1.css"/>
 </h:head>
 
@@ -26,10 +26,8 @@
 
     <f:view>
         <f:metadata>
-            <f:viewParam name="jid" value="#{conversationBean.upload_id}"/>
-            <f:viewParam name="c" value="#{conversationBean.selectedIndex}"/>
-            <f:viewParam name="title" value="#{conversationBean.topicTitle}"/>
-            <f:viewAction action="#{conversationBean.loadConversations}"/>
+            <f:viewParam name="post_id" value="#{postAnalyzerBean.targetPostId}"/>
+            <f:viewAction action="#{postAnalyzerBean.loadByPostId(postAnalyzerBean.targetPostId)}"/>
         </f:metadata>
 
         <div class="menu-container">
@@ -46,20 +44,25 @@
             </div>
         </div>
 
-        <h1>#{conversationBean.topicTitle}</h1>
-        <h2>Upload: #{conversationBean.upload_id}
-            &#x2014; Conversation #{conversationBean.selectedIndex + 1}
-            (#{conversationBean.selectedConversation.posts.size()} posts)</h2>
+        <h1>Post Analyzer</h1>
+        <h2>Post: #{postAnalyzerBean.targetPostId}</h2>
 
-        <h:link value="Back to conversation list" outcome="view-conversations.xhtml">
-            <f:param name="jid" value="#{conversationBean.upload_id}"/>
-            <f:param name="title" value="#{conversationBean.topicTitle}"/>
-        </h:link>
-
-        <ui:include src="conversation-fragment.xhtml">
-            <ui:param name="conversation" value="#{conversationBean.selectedConversation}"/>
-            <ui:param name="highlightPostId" value=""/>
-        </ui:include>
+        <div class="analyzer-container">
+            <div class="analyzer-left">
+                <h:panelGroup rendered="#{postAnalyzerBean.selectedConversation ne null}">
+                    <ui:include src="conversation-fragment.xhtml">
+                        <ui:param name="conversation" value="#{postAnalyzerBean.selectedConversation}"/>
+                        <ui:param name="highlightPostId" value="#{postAnalyzerBean.targetPostId}"/>
+                    </ui:include>
+                </h:panelGroup>
+                <h:panelGroup rendered="#{postAnalyzerBean.selectedConversation eq null}">
+                    <p class="analyzer-message">#{postAnalyzerBean.notFoundMessage}</p>
+                </h:panelGroup>
+            </div>
+            <div class="analyzer-right">
+                <p class="placeholder-text">Expression exploration coming soon.</p>
+            </div>
+        </div>
 
     </f:view>
 
@@ -74,6 +77,11 @@
     }
     var toggle = document.getElementById('color-mode-toggle');
     if (toggle) toggle.checked = (localStorage.getItem('ravenColorMode') === 'dark');
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var el = document.querySelector('.post-highlighted');
+        if (el) el.scrollIntoView({behavior: 'smooth', block: 'center'});
+    });
     //]]>
     </script>
 </h:body>
