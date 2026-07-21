@@ -9,7 +9,7 @@
 
         <h:panelGroup layout="block" styleClass="post-card-context"
                       rendered="#{conversation.contextPost ne null}"
-                      onclick="window.location.href='view-analyzer.xhtml?post_id=#{conversation.contextPost.postId}'">
+                      onclick="if(!event.target.closest('.post-content')){window.location.href='view-analyzer.xhtml?post_id=#{conversation.contextPost.postId}'}">
             <h:panelGroup layout="block" styleClass="post-header">
                 <h:outputText value="#{conversation.contextPost.author}" styleClass="post-author"/>
                 <h:outputText value=" [#{conversation.contextPost.postId}]" styleClass="post-id"/>
@@ -23,7 +23,7 @@
         <ui:repeat value="#{conversation.posts}" var="post" varStatus="status">
             <h:panelGroup layout="block"
                           styleClass="#{status.index == 0 and conversation.contextPost eq null ? 'post-card-context' : 'post-card'}#{post.postId eq highlightPostId ? ' post-highlighted' : ''}"
-                          onclick="window.location.href='view-analyzer.xhtml?post_id=#{post.postId}'">
+                          onclick="if(!event.target.closest('.post-content')){window.location.href='view-analyzer.xhtml?post_id=#{post.postId}'}">
 
                 <h:panelGroup layout="block" styleClass="post-header">
                     <h:outputText value="#{post.author}" styleClass="post-author"/>
