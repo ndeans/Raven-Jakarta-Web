@@ -181,6 +181,15 @@ table {
     font-style: italic;
 }
 
+/* OPP's own "show quote" toggle mutates its parent's innerHTML on click,
+   which was the root cause of PI-27-X (click bubbled into the card's
+   navigation handler after the DOM had already changed underneath it).
+   Disabled rather than removed from the scraped HTML itself. */
+.post-content div.quote_colors a {
+    pointer-events: none;
+    cursor: default;
+}
+
 /* ==================== Color Mode ==================== */
 
 /* Light mode (default) — base rules above cover light mode */
