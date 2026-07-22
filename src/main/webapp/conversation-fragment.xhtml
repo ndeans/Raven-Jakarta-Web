@@ -40,4 +40,24 @@
 
     </h:panelGroup>
 
+    <script type="text/javascript">
+    //<![CDATA[
+    // OPP's "show quote" link is already disabled (style1.css), but the
+    // dead link text plus its surrounding "( )" were still visible and
+    // teased users with something that looked clickable but wasn't.
+    // Strip the link and its parens from the DOM entirely, once per post.
+    document.querySelectorAll('.post-content div.quote_colors a').forEach(function(a) {
+        var prev = a.previousSibling;
+        if (prev && prev.nodeType === Node.TEXT_NODE) {
+            prev.textContent = prev.textContent.replace(/\(\s*$/, '');
+        }
+        var next = a.nextSibling;
+        if (next && next.nodeType === Node.TEXT_NODE) {
+            next.textContent = next.textContent.replace(/^\s*\)/, '');
+        }
+        a.remove();
+    });
+    //]]>
+    </script>
+
 </ui:composition>
