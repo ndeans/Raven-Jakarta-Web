@@ -129,6 +129,14 @@ table {
     background-color: #ffffff;
 }
 
+.post-card, .post-card-context {
+    cursor: pointer;
+}
+
+.post-card:hover, .post-card-context:hover {
+    box-shadow: 0 0 0 2px rgba(51, 102, 170, 0.4);
+}
+
 .post-header {
     font-family: "Noto Sans", sans-serif;
     font-size: 14px;
@@ -171,6 +179,15 @@ table {
     margin-bottom: 0.5em;
     color: #555;
     font-style: italic;
+}
+
+/* OPP's own "show quote" toggle mutates its parent's innerHTML on click,
+   which was the root cause of PI-27-X (click bubbled into the card's
+   navigation handler after the DOM had already changed underneath it).
+   Disabled rather than removed from the scraped HTML itself. */
+.post-content div.quote_colors a {
+    pointer-events: none;
+    cursor: default;
 }
 
 /* ==================== Color Mode ==================== */
@@ -267,4 +284,29 @@ td.logo {
     font-family: "Noto Sans", sans-serif;
     font-size: 14px;
     font-weight: 600;
+}
+
+/* ==================== Post Analyzer ==================== */
+
+.analyzer-container {
+    display: flex;
+    gap: 1em;
+}
+.analyzer-left {
+    flex: 1 1 50%;
+    max-width: 50%;
+}
+.analyzer-right {
+    flex: 1 1 50%;
+    max-width: 50%;
+    border-left: 1px solid darkgrey;
+    padding-left: 1em;
+}
+.post-highlighted {
+    outline: 2px solid goldenrod;
+    background-color: rgba(230, 190, 60, 0.15);
+}
+.analyzer-message {
+    font-style: italic;
+    padding: 1em 0;
 }
