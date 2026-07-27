@@ -14,15 +14,7 @@
 </h:head>
 
 <h:body>
-    <script type="text/javascript">
-    //<![CDATA[
-    (function() {
-        if (localStorage.getItem('ravenColorMode') === 'dark') {
-            document.body.classList.add('dark');
-        }
-    })();
-    //]]>
-    </script>
+    <ui:include src="dark-mode-init.xhtml"/>
 
     <f:view>
         <f:metadata>
@@ -63,17 +55,13 @@
 
     </f:view>
 
+    <ui:include src="color-mode-toggle-script.xhtml"/>
+
     <script type="text/javascript">
     //<![CDATA[
-    function toggleColorMode() {
-        var isDark = document.body.classList.toggle('dark');
-        localStorage.setItem('ravenColorMode', isDark ? 'dark' : 'light');
-    }
     function toggleMenu() {
         document.getElementById('dropdown-menu').classList.toggle('hidden');
     }
-    var toggle = document.getElementById('color-mode-toggle');
-    if (toggle) toggle.checked = (localStorage.getItem('ravenColorMode') === 'dark');
     //]]>
     </script>
 </h:body>

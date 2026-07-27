@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <script type="text/javascript">
+    //<![CDATA[
+    function toggleColorMode() {
+        var isDark = document.body.classList.toggle('dark');
+        localStorage.setItem('ravenColorMode', isDark ? 'dark' : 'light');
+    }
+    var toggle = document.getElementById('color-mode-toggle');
+    if (toggle) toggle.checked = (localStorage.getItem('ravenColorMode') === 'dark');
+    //]]>
+    </script>
+</ui:composition>

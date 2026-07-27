@@ -2,6 +2,7 @@ package us.deans.raven;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import us.deans.raven.processor.Maria_DAO;
 import us.deans.raven.processor.OppCurator;
@@ -18,7 +19,8 @@ import java.util.List;
 @ViewScoped
 public class ConsoleBean implements Serializable {
 
-    private static final int PAGE_SIZE = 25;
+    @Inject
+    private ConfigBean configBean;
 
     private List<RvnJob> uploads;
     private String authorFilter = "";
@@ -38,17 +40,18 @@ public class ConsoleBean implements Serializable {
     }
 
     private void reload() {
+        int pageSize = configBean.getPageSize();
         try {
             List<RvnJob> results;
             if (isFilterActive()) {
                 OppCurator curator = new OppCurator();
-                results = curator.getFilteredUploads(authorFilter, keywordFilter, pageOffset, PAGE_SIZE);
+                results = curator.getFilteredUploads(authorFilter, keywordFilter, pageOffset, pageSize);
             } else {
                 Maria_DAO mariaDao = new Maria_DAO();
-                results = mariaDao.getMetaData(pageOffset, PAGE_SIZE);
+                results = mariaDao.getMetaData(pageOffset, pageSize);
             }
-            hasNextPage = results.size() > PAGE_SIZE;
-            uploads = hasNextPage ? results.subList(0, PAGE_SIZE) : results;
+            hasNextPage = results.size() > pageSize;
+            uploads = hasNextPage ? results.subList(0, pageSize) : results;
             logger.info("ConsoleBean loaded {} uploads (offset={}, filterActive={})",
                     uploads.size(), pageOffset, isFilterActive());
         } catch (Exception ex) {
@@ -69,12 +72,12 @@ public class ConsoleBean implements Serializable {
     }
 
     public void nextPage() {
-        pageOffset += PAGE_SIZE;
+        pageOffset += configBean.getPageSize();
         reload();
     }
 
     public void previousPage() {
-        pageOffset = Math.max(0, pageOffset - PAGE_SIZE);
+        pageOffset = Math.max(0, pageOffset - configBean.getPageSize());
         reload();
     }
 
