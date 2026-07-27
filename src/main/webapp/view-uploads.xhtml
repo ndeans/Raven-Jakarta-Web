@@ -50,7 +50,7 @@
         </div>
     </h:form>
 
-    <div class="table-scroll">
+    <div class="table-scroll uploads-scroll">
         <h:form>
             <h:dataTable value="#{consoleBean.uploads}"
                          var="upload"
@@ -93,6 +93,13 @@
             </h:dataTable>
         </h:form>
     </div>
+
+    <h:form id="pagerForm">
+        <div class="pager-bar">
+            <h:commandButton value="Previous" action="#{consoleBean.previousPage}" disabled="#{!consoleBean.hasPreviousPage}"/>
+            <h:commandButton value="Next" action="#{consoleBean.nextPage}" disabled="#{!consoleBean.hasNextPage}"/>
+        </div>
+    </h:form>
 
     <script type="text/javascript">
     //<![CDATA[
