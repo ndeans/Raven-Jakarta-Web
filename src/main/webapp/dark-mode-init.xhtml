@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <script type="text/javascript">
+    //<![CDATA[
+    (function() {
+        var stored = localStorage.getItem('ravenColorMode');
+        var mode = stored !== null ? stored : '#{configBean.darkModeDefault}';
+        if (mode === 'dark') {
+            document.body.classList.add('dark');
+        }
+    })();
+    //]]>
+    </script>
+</ui:composition>
